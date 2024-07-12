@@ -24,19 +24,18 @@ function M.setup(custom)
 				local begIndex = vim.api.nvim_win_get_cursor(0)[2]
 				char = string.sub(currentLine, begIndex-1, begIndex)
 				if char == '${' then  -- embraced e.g. ${var}
-					vim.cmd('normal! "_Xhel"_x')
+					vim.cmd('normal! Xhelx')
 					initPoint[2] = initPoint[2]-1
 				end
 			else
-				vim.cmd('normal! a}')
+				vim.cmd('normal! l')
 				vim.cmd('normal! b')
 				local begIndex = vim.api.nvim_win_get_cursor(0)[2]
 				char = string.sub(currentLine, begIndex, begIndex)
 				if char == '$' then  -- unbraced e.g. $var
 					vim.cmd('normal! lbi{')
+					vim.cmd('normal! ea}')
 					initPoint[2] = initPoint[2]+1
-				else
-					vim.cmd('normal! el"_x')
 				end
 			end
 
